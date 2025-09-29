@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-// If you have react-leaflet installed uncomment these imports and the MapView component below
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-// import 'leaflet/dist/leaflet.css';
+
 
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -12,7 +10,6 @@ export default function App() {
   const [historyData, setHistoryData] = useState(sampleHistory());
 
   useEffect(() => {
-    // Example: fetch initial predictions on mount
     fetchPredictions();
   }, []);
 
@@ -140,8 +137,8 @@ function ImpactCard({ title, value }) {
   );
 }
 
-// Uncomment and use MapView if you have the Leaflet stack installed
-/*
+
+
 function MapView({ points = [] }) {
   return (
     <MapContainer center={[20.5937, 78.9629]} zoom={5} style={{ height: '100%', width: '100%' }}>
@@ -156,7 +153,7 @@ function MapView({ points = [] }) {
     </MapContainer>
   );
 }
-*/
+
 
 // Demo data helpers
 function sampleHistory() {

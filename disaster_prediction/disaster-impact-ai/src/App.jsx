@@ -104,7 +104,6 @@ function Header() {
     <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold">DI</div>
           <div>
             <h1 className="text-lg font-semibold">Disaster Impact — AI</h1>
             <p className="text-xs text-slate-400">Prediction · Visualization · Alerts</p>

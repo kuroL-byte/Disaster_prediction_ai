@@ -3,6 +3,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -16,9 +17,7 @@ export default function App() {
   async function fetchPredictions() {
     setLoading(true);
     try {
-      // Replace url with your backend endpoint
       const res = await axios.get('/api/predict');
-      // expected: { severity: 'High', affected: [{lat, lng, severity}], timeseries: [...] }
       setPredictions(res.data);
       if (res.data && res.data.timeseries) setHistoryData(res.data.timeseries);
     } catch (err) {
@@ -73,15 +72,8 @@ export default function App() {
           <section className="grid grid-cols-3 gap-4">
             <div className="col-span-2 bg-white rounded-2xl shadow p-4 h-[60vh]">
               <h3 className="text-lg font-semibold mb-2">Impact Map</h3>
-              <p className="text-xs text-slate-500 mb-3">Interactive map showing affected areas (demo).</p>
-              <div className="h-full rounded-lg border-dashed border-2 border-slate-200 overflow-hidden">
-                {/* MapView component: uncomment if you installed react-leaflet and configured Leaflet CSS */}
-                {/* <MapView points={predictions?.affected ?? []} /> */}
-
-                {/* Fallback placeholder if Leaflet isn't installed */}
-                <div className="h-full flex items-center justify-center text-slate-400">
-                  Map placeholder — install react-leaflet & leaflet and uncomment MapView.
-                </div>
+              <div className="h-full rounded-lg overflow-hidden">
+                <MapView points={predictions?.affected ?? []} />
               </div>
             </div>
 
@@ -155,7 +147,6 @@ function MapView({ points = [] }) {
 }
 
 
-// Demo data helpers
 function sampleHistory() {
   return [
     { time: 'T-5', value: 10 },

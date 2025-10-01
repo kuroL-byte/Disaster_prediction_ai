@@ -19,6 +19,7 @@ export default function App() {
       setPredictions(res.data);
       if (res.data && res.data.timeseries) setHistoryData(res.data.timeseries);
     } catch (err) {
+      console.error('Failed to fetch predictions, using demo data', err);
       setPredictions(demoPrediction());
     } finally {
       setLoading(false);
@@ -94,6 +95,7 @@ function Header() {
     <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
+          
           <div>
             <h1 className="text-lg font-semibold">Disaster Impact — AI</h1>
             <p className="text-xs text-slate-400">Prediction · Visualization · Alerts</p>

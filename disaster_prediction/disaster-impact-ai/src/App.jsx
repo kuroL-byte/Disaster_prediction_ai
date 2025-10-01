@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-
-
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 export default function App() {
@@ -21,8 +19,6 @@ export default function App() {
       setPredictions(res.data);
       if (res.data && res.data.timeseries) setHistoryData(res.data.timeseries);
     } catch (err) {
-      console.error('Failed to fetch predictions (demo only)', err);
-      // fallback demo
       setPredictions(demoPrediction());
     } finally {
       setLoading(false);
@@ -54,11 +50,6 @@ export default function App() {
               <li>District B</li>
               <li>District C</li>
             </ul>
-          </div>
-
-          <div className="mt-6 text-xs text-slate-500">
-            <strong>Notes:</strong>
-            <p>Click refresh to pull latest predictions from your API. Replace demo data with real responses.</p>
           </div>
         </aside>
 
@@ -93,7 +84,6 @@ export default function App() {
           </section>
         </main>
       </div>
-
       <footer className="text-center py-6 text-xs text-slate-500">Disaster Impact — AI Demo Dashboard</footer>
     </div>
   );
@@ -109,7 +99,6 @@ function Header() {
             <p className="text-xs text-slate-400">Prediction · Visualization · Alerts</p>
           </div>
         </div>
-
         <div className="flex items-center gap-3">
           <button className="py-1 px-3 text-sm rounded-md bg-slate-100">Profile</button>
           <button className="py-1 px-3 text-sm rounded-md bg-slate-100">Settings</button>
@@ -128,8 +117,6 @@ function ImpactCard({ title, value }) {
   );
 }
 
-
-
 function MapView({ points = [] }) {
   return (
     <MapContainer center={[20.5937, 78.9629]} zoom={5} style={{ height: '100%', width: '100%' }}>
@@ -144,7 +131,6 @@ function MapView({ points = [] }) {
     </MapContainer>
   );
 }
-
 
 function sampleHistory() {
   return [
